@@ -142,7 +142,7 @@ export default function ConceptPanel({ concept, onClose }: ConceptPanelProps) {
             <div className="text-5xl">
               {score === concept.quiz.length
                 ? "🏆"
-                : score >= 2
+                : score >= Math.ceil(concept.quiz.length * 0.7)
                   ? "🧠"
                   : "💀"}
             </div>
@@ -155,10 +155,10 @@ export default function ConceptPanel({ concept, onClose }: ConceptPanelProps) {
               </p>
               <p className="font-mono text-xs text-gray-400">
                 {score === concept.quiz.length
-                  ? "Perfect — you've internalized this technique."
-                  : score >= 2
-                    ? "Solid grasp. Re-read the quickie to nail the details."
-                    : "Worth revisiting the quickie and trying again."}
+                  ? "Perfect — you can apply this technique in the wild."
+                  : score >= Math.ceil(concept.quiz.length * 0.7)
+                    ? "Strong instincts. Re-read the quickie to sharpen the edges."
+                    : "These questions demand application, not recall. Re-read the quickie, then think about how YOU would use each technique in your own life."}
               </p>
             </div>
 
