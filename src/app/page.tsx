@@ -2,11 +2,22 @@ import BookShelf from "@/components/BookShelf";
 
 export default function Home() {
   return (
-    <main className="min-h-screen flex flex-col bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950">
+    <main 
+      className="min-h-screen flex flex-col transition-colors duration-300"
+      style={{
+        background: 'linear-gradient(to bottom, var(--color-bg-primary), var(--color-bg-secondary))',
+      }}
+    >
       {/* Ambient background */}
       <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl" />
+        <div 
+          className="absolute top-0 left-1/4 w-96 h-96 rounded-full blur-3xl"
+          style={{ background: 'var(--color-glow)' }}
+        />
+        <div 
+          className="absolute bottom-0 right-1/4 w-96 h-96 rounded-full blur-3xl"
+          style={{ background: 'var(--color-glow)' }}
+        />
       </div>
       
       {/* Main Content */}
@@ -16,7 +27,10 @@ export default function Home() {
       
       {/* Footer */}
       <footer className="text-center py-6 relative z-10">
-        <p className="font-mono text-xs text-gray-600">
+        <p 
+          className="font-mono text-xs"
+          style={{ color: 'var(--color-text-muted)' }}
+        >
           Interactive book summaries for curious minds
         </p>
       </footer>

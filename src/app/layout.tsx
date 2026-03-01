@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { ThemeProvider } from "@/context/ThemeContext";
 
 export const metadata: Metadata = {
-  title: "Lateral Thinking // Interactive Mind Map",
-  description: "Learn Edward de Bono's lateral thinking techniques through an interactive mindmap with quickies and quizzes",
+  title: "Mind Library // Interactive Book Summaries",
+  description: "Interactive book summaries that transform complex ideas into practical wisdom",
 };
 
 export default function RootLayout({
@@ -12,9 +13,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className="antialiased grid-bg scanlines relative min-h-screen">
-        {children}
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

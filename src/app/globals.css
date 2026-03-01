@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @theme inline {
+  /* Default/Dark Theme Colors */
   --color-techno-blue: #00d4ff;
   --color-techno-dark: #0a0e1a;
   --color-techno-card: #111827;
@@ -12,12 +13,53 @@
   --color-orange-warm: #f97316;
   --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  /* Theme Variables - Default (Dark) */
+  --color-bg-primary: #0a0e1a;
+  --color-bg-secondary: #111827;
+  --color-bg-card: #1f2937;
+  --color-text-primary: #e0e7ff;
+  --color-text-secondary: #9ca3af;
+  --color-text-muted: #6b7280;
+  --color-accent-primary: #00d4ff;
+  --color-accent-secondary: #f59e0b;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-glow: rgba(0, 212, 255, 0.15);
+}
+
+/* Light Theme */
+html.theme-light {
+  --color-bg-primary: #f8fafc;
+  --color-bg-secondary: #ffffff;
+  --color-bg-card: #f1f5f9;
+  --color-text-primary: #1e293b;
+  --color-text-secondary: #64748b;
+  --color-text-muted: #94a3b8;
+  --color-accent-primary: #0ea5e9;
+  --color-accent-secondary: #f59e0b;
+  --color-border: rgba(0, 0, 0, 0.1);
+  --color-glow: rgba(14, 165, 233, 0.15);
+}
+
+/* Warm Theme */
+html.theme-warm {
+  --color-bg-primary: #fdf6e3;
+  --color-bg-secondary: #f5e6d3;
+  --color-bg-card: #eee8d5;
+  --color-text-primary: #5c4a32;
+  --color-text-secondary: #8b7355;
+  --color-text-muted: #a89080;
+  --color-accent-primary: #d97706;
+  --color-accent-secondary: #b45309;
+  --color-border: rgba(139, 115, 85, 0.2);
+  --color-glow: rgba(217, 119, 6, 0.15);
 }
 
 body {
-  background: var(--color-techno-dark);
-  color: #e0e7ff;
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
   font-family: var(--font-sans);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Glitch animation for titles */
@@ -30,8 +72,8 @@ body {
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
-  50% { box-shadow: 0 0 40px rgba(0, 212, 255, 0.6); }
+  0%, 100% { box-shadow: 0 0 20px var(--color-glow); }
+  50% { box-shadow: 0 0 40px var(--color-glow); }
 }
 
 @keyframes float {
@@ -58,6 +100,40 @@ body {
 @keyframes glow-pulse {
   0%, 100% { opacity: 0.5; }
   50% { opacity: 1; }
+}
+
+/* Zen ripple animation for courage book */
+@keyframes zen-ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Hub rotation animation */
+@keyframes hub-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Pulse ring animation */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
 }
 
 .glitch-text {
@@ -91,8 +167,9 @@ body {
   animation: shimmer 2s infinite;
 }
 
-/* Scanline overlay effect */
-.scanlines::after {
+/* Scanline overlay effect - only in dark mode */
+html.theme-dark .scanlines::after,
+html:not(.theme-light):not(.theme-warm) .scanlines::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -106,11 +183,28 @@ body {
   pointer-events: none;
 }
 
-/* Grid background pattern */
-.grid-bg {
+/* Grid background pattern - only in dark mode */
+html.theme-dark .grid-bg,
+html:not(.theme-light):not(.theme-warm) .grid-bg {
   background-image:
     linear-gradient(rgba(0, 212, 255, 0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 212, 255, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Light theme grid - subtle */
+html.theme-light .grid-bg {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Warm theme grid - very subtle paper texture */
+html.theme-warm .grid-bg {
+  background-image:
+    linear-gradient(rgba(139, 115, 85, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 115, 85, 0.05) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
@@ -129,7 +223,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+  background: linear-gradient(90deg, transparent, var(--color-glow), transparent);
   transform: translateX(-100%);
   transition: transform 0.5s;
 }
@@ -161,21 +255,22 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.2);
+  background: var(--color-bg-secondary);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--color-text-muted);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--color-text-secondary);
 }
 
-/* Selection color */
+/* Selection color - adapts to theme */
 ::selection {
-  background: rgba(245, 158, 11, 0.3);
+  background: var(--color-accent-secondary);
   color: white;
+  opacity: 0.3;
 }
