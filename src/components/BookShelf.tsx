@@ -41,6 +41,30 @@ const books: Book[] = [
     description: "A dialogue on Adlerian psychology. Discover why being disliked might be the key to true freedom and happiness.",
     year: "2013",
   },
+  {
+    id: "hooked",
+    title: "HOOKED",
+    author: "Nir Eyal",
+    color: "#6366f1",
+    spineColor: "linear-gradient(180deg, #1e1b4b 0%, #2e1065 50%, #1e1b4b 100%)",
+    textColor: "#a5b4fc",
+    accentColor: "#818cf8",
+    icon: "🪝",
+    description: "Discover the Hook Model — the four-step process behind habit-forming products and the psychology of user engagement.",
+    year: "2014",
+  },
+  {
+    id: "dont-sweat",
+    title: "DON'T SWEAT THE SMALL STUFF",
+    author: "Richard Carlson",
+    color: "#059669",
+    spineColor: "linear-gradient(180deg, #052e16 0%, #064e3b 50%, #052e16 100%)",
+    textColor: "#6ee7b7",
+    accentColor: "#34d399",
+    icon: "🌊",
+    description: "Simple ways to keep the little things from taking over your life. Practical wisdom for finding peace in everyday moments.",
+    year: "1997",
+  },
 ];
 
 export default function BookShelf() {
