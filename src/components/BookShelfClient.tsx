@@ -47,6 +47,19 @@ const books: Book[] = [
     concepts: ["Adlerian Psychology", "Self-Acceptance", "Interpersonal Relations", "Life Tasks"],
     designType: "zen-ripple",
   },
+  {
+    id: "default-mode-network",
+    title: "The Default Mode Network",
+    author: "Neuroscience",
+    color: "#7c3aed",
+    accentColor: "#c084fc",
+    secondaryColor: "#1e1b4b",
+    coverImage: "/dmn_book.jpeg",
+    description: "Your brain's most powerful network activates when you stop trying. Discover the hidden engine behind creativity, self-identity, and imagination.",
+    year: "2001",
+    concepts: ["Mind Wandering", "Creativity", "Self-Narrative", "Social Brain"],
+    designType: "zen-ripple",
+  },
 ];
 
 // Hub and Spoke Design Component (for Lateral Thinking)

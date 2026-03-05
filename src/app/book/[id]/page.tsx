@@ -10,6 +10,7 @@ import { concepts as lateralConcepts, centralTheme } from "@/data/lateralThinkin
 import { concepts as courageConcepts, bookInfo as courageInfo, quizQuestions } from "@/data/courageToBeDisliked";
 import { concepts as hookedConcepts, bookInfo as hookedInfo, quizQuestions as hookedQuizQuestions } from "@/data/hooked";
 import { concepts as dontSweatConcepts, bookInfo as dontSweatInfo, quizQuestions as dontSweatQuizQuestions } from "@/data/dontSweatTheSmallStuff";
+import { concepts as dmnConcepts, bookInfo as dmnInfo, quizQuestions as dmnQuizQuestions } from "@/data/defaultModeNetwork";
 
 export default function BookPage() {
   const params = useParams();
@@ -322,6 +323,84 @@ export default function BookPage() {
         <footer className="text-center py-6 px-4 border-t border-gray-800/50">
           <p className="font-mono text-xs text-gray-600">
             Don&apos;t sweat the small stuff... and it&apos;s all small stuff
+          </p>
+        </footer>
+      </main>
+    );
+  }
+
+  if (bookId === "default-mode-network") {
+    return (
+      <main className="min-h-screen flex flex-col bg-gradient-to-b from-gray-950 via-violet-950/30 to-gray-950">
+        {/* Navigation */}
+        <nav className="px-6 py-4 flex items-center justify-between border-b border-violet-900/30">
+          <button
+            onClick={() => router.push("/")}
+            className="text-violet-400/60 hover:text-violet-300 font-mono text-sm flex items-center gap-2 transition-colors"
+          >
+            ← Back to Library
+          </button>
+          <span className="text-violet-400/40 font-mono text-xs">DEFAULT MODE NETWORK</span>
+        </nav>
+
+        {/* Header */}
+        <header className="text-center pt-8 pb-4 px-4">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-500/20 to-purple-500/20 border border-violet-500/30 mb-4 text-3xl">
+            🧠
+          </div>
+          <h1 className="text-3xl md:text-5xl font-black tracking-tight mb-2">
+            <span className="bg-gradient-to-r from-violet-300 via-purple-400 to-fuchsia-400 bg-clip-text text-transparent">
+              The Default Mode
+            </span>
+            <br />
+            <span className="text-white">Network</span>
+          </h1>
+          <p className="font-mono text-xs text-violet-400/50 tracking-widest uppercase mb-3">
+            Neuroscience of the Wandering Mind
+          </p>
+          <div className="h-px w-48 mx-auto bg-gradient-to-r from-transparent via-violet-500 to-transparent mb-4" />
+          <p className="text-gray-400 text-sm max-w-xl mx-auto italic">
+            &ldquo;{dmnInfo.quote}&rdquo;
+          </p>
+        </header>
+
+        {/* Tab Navigation */}
+        <div className="flex justify-center gap-2 px-4 mb-6">
+          <button
+            onClick={() => setActiveTab("concepts")}
+            className={`px-6 py-2 rounded-full font-mono text-sm font-bold transition-all ${
+              activeTab === "concepts"
+                ? "bg-violet-500 text-white shadow-lg shadow-violet-500/25"
+                : "bg-gray-800 text-gray-400 hover:bg-gray-700"
+            }`}
+          >
+            🧠 Concepts
+          </button>
+          <button
+            onClick={() => setActiveTab("quiz")}
+            className={`px-6 py-2 rounded-full font-mono text-sm font-bold transition-all ${
+              activeTab === "quiz"
+                ? "bg-purple-500 text-white shadow-lg shadow-purple-500/25"
+                : "bg-gray-800 text-gray-400 hover:bg-gray-700"
+            }`}
+          >
+            🧪 Quiz
+          </button>
+        </div>
+
+        {/* Content */}
+        <div className="flex-1 px-4 pb-8">
+          {activeTab === "concepts" ? (
+            <ConceptCards concepts={dmnConcepts} />
+          ) : (
+            <DialogueQuiz questions={dmnQuizQuestions} />
+          )}
+        </div>
+
+        {/* Footer */}
+        <footer className="text-center py-6 px-4 border-t border-gray-800/50">
+          <p className="font-mono text-xs text-gray-600">
+            The brain does not rest when the mind wanders. It ignites.
           </p>
         </footer>
       </main>
